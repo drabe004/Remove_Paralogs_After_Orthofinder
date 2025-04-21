@@ -34,30 +34,46 @@ RESULT: 12927 high qual MSAs
 These scripts takes as input a directory with multiple sequence alignments (output flag -msa from orthofinder) and unaligns them so they can be used as input for blast to ID each sequence by GeneSymbol
 ########################################################################
 
+###STEP 3
 ### UNALIGN MSAs### This script takes the alignment files (all in a directory) and removes "-" making these sequence lists rather than alignments for blast inpu 
 
 DeleteDashes.sh
 
+###STEP 4
 ### Then we start to blast
 #Here is a blastDB for Danio rerio from Ensembl
-/panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/Proteomes
+Path/to/a/custom/database 
+#You you use either a single proteome (e.g. Danio rerio or a custom DB. ONLY Ensembl proteome will have a GeneSymbol -- so *must* use an Ensembl generated database for this pipeline
+#Now we need to blast each orthogroup seq list (formerly MSAs) 
 
-####Now we need to blast each orthogroup seq list (formerly MSAs) 
-locale: /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/
 BLAST1_array.sh
-runarrays.sh
+runarrays_BLAST1.sh
 
-Output here: /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x_unaligned/BlastP_Results/
+#These scripts will blast every sequence in every alignment given an input directory of alignments, and a list of those files in an input txt file (ls > list.txt) (cleaned and unaligned). It will output in this format: -outfmt "6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send
+
 
 ######################################################################
-Ammend Gene symbols to all sequences in the folder aptly named /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/MakingAlignmentsWithGeneSymbolsFromBlast/
+Ammend Gene symbols to all sequences in the folder aptly named 
 #################################################################
+##STEP 5
+Inputs:
+BlastPOutputList.txt: List of BLASTP result files.
+Results_Jun27ListOfAlignmentsbeforeBlast.txt: List of alignment files (FASTA).
+
+What it does:
+For each array task:
+Loads matching BLASTP and alignment files.
+Runs the Python script to add gene symbols to alignment headers.
+Saves modified files to Alignments_withGeneSymbols/.
+
+Output:
+FASTA files with _GeneSymbols.fa suffix.
 
 append_gene_symbols.py
 append_gene_symbols.sh
 runarrays.sh
+
 ##This will add the gene symbol for the top hit from each seqeunce from the BlastP results to the original MSAs (but not overwrite them, write them to a new directory)
-Output here: /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x/Alignments_withGeneSymbols/
 
 
 ###########################
