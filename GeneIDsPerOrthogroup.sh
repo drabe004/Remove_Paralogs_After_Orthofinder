@@ -5,17 +5,19 @@
 #SBATCH -c 16
 #SBATCH --mem=16g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
+#SBATCH --mail-user=your.email@institution.edu
 #SBATCH --job-name=GID_perOG
-#SBATCH --partition=agsmall
-#SBATCH --account=mcgaughs
+#SBATCH --partition=your_partition
+#SBATCH --account=your_account_name
 
+# Navigate to the working directory
+cd /path/to/your/project/QuantifyGeneSymbolsInMSAs
 
-
-cd /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/QuantifyGeneSymbolsInMSAs
-
+# Load necessary modules
 module load python
 
-source ~/envs/myenv/bin/activate
+# Activate your Python virtual environment
+source ~/path/to/your/env/bin/activate
 
-python GeneIDsPerOrthogroup.py  12kGeneIDMatrix.csv GeneIDsPerOrthogroup.csv
+# Run the script
+python GeneIDsPerOrthogroup.py 12kGeneIDMatrix.csv GeneIDsPerOrthogroup.csv
