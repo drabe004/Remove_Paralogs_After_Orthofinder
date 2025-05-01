@@ -5,17 +5,17 @@
 #SBATCH -c 16
 #SBATCH --mem=16g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
-#SBATCH --job-name=percetGIDs
-#SBATCH --partition=agsmall
-#SBATCH --account=mcgaughs
+#SBATCH --mail-user=your.email@institution.edu
+#SBATCH --job-name=percentGIDs
+#SBATCH --partition=your_partition
+#SBATCH --account=your_account
 
+# Navigate to the working directory
+cd /path/to/your/project/QuantifyGeneSymbolsInMSAs
 
-
-cd /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/QuantifyGeneSymbolsInMSAs
-
+# Load required modules and activate environment
 module load python
+source ~/path/to/your/env/bin/activate
 
-source ~/envs/myenv/bin/activate
-
-python PercentageGeneIDs.py  /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x/Alignments_withGeneSymbols/Alignments_withGeneIDs PercentageGeneIDs.csv
+# Run the script to calculate gene ID percentages
+python PercentageGeneIDs.py /path/to/your/input_alignments PercentageGeneIDs.csv
