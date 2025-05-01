@@ -65,7 +65,7 @@ A custom pipeline to clean, filter, and annotate Orthofinder results in order to
 - Scripts:
   - `append_gene_symbols.py`
   - `append_gene_symbols.sh`
-  - `runarrays.sh`
+  - `RunArrays.sh`
 
 **Input**:
 - `BlastPOutputList.txt`
@@ -167,6 +167,10 @@ A custom pipeline to clean, filter, and annotate Orthofinder results in order to
 - >7 cavefish species
 - >30 total species
 
+**Input Lists**:
+- `Cavefish_List.txt`
+- `Species_List.txt`
+
 **Result**: 12,172 alignments remain.
 
 ---
@@ -174,8 +178,8 @@ A custom pipeline to clean, filter, and annotate Orthofinder results in order to
 ## Step 12: Realign MSAs with MACSE
 
 - Scripts:
-  - `MACSE_arrayScript.sh`
-  - `runarrays.sh`
+  - `MAFFT_arrayScript.sh` (note: script may be named for MAFFT but originally MACSE used)
+  - `RunArrays.sh`
 
 **Output**: Realigned files tagged with `_realigned.fa`
 
@@ -183,7 +187,7 @@ A custom pipeline to clean, filter, and annotate Orthofinder results in order to
 
 ## Step 13: Generate Gene Trees with IQ-TREE
 
-- Script: `IQTREE_array.sh`
+- Script: `IQTREE_Arrays.sh`
 
 **Goal**: Infer high-quality gene trees for use with downstream tools like Orthosnap or GeneRax.
 
@@ -208,6 +212,4 @@ A custom pipeline to clean, filter, and annotate Orthofinder results in order to
 **Tips**:
 - Paths must be hard-coded due to browser behavior.
 - Update scope manually to `Teleost` (scope ID = 32443).
-
----
 
