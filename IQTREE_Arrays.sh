@@ -5,24 +5,23 @@
 #SBATCH -c 4
 #SBATCH --mem=16g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
+#SBATCH --mail-user=your.email@institution.edu
 #SBATCH --job-name=IQTREEArrays
 #SBATCH -o iqtree_%j_%a.out
 #SBATCH -e iqtree_%j_%a.err
-#SBATCH -p astyanax
-#SBATCH --account=mcgaughs
+#SBATCH -p your_partition
+#SBATCH --account=your_account
 #SBATCH --array=2501-3500  # Adjust this to match number of lines in the list
 
 # Set working directory
-cd /panfs/jay/groups/26/mcgaughs/drabe004/IQTREE
+cd /path/to/your/project/IQTREE
 
 # Load the module (make sure iqtree is available!)
 module purge
 module load iqtree2/2.1.2-gcc-13.1.0-xsnl63s
 
-
 # Input & Output
-alignment_dir="/panfs/jay/groups/26/mcgaughs/drabe004/BIGFISHGENOME_DataRespository/Protein_Alignments_and_GeneTrees_multicopy/OrthosnapformattedAlns_March2025_1"
+alignment_dir="/path/to/your/project/Protein_Alignments"
 ALIST="${alignment_dir}/list.txt"  # File containing list of alignment file names
 
 # Output path
