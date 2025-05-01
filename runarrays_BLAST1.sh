@@ -5,18 +5,17 @@
 #SBATCH -c 1
 #SBATCH --mem=1g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
-#SBATCH --job-name=BlastAll2Danio
+#SBATCH --mail-user=your.email@institution.edu
+#SBATCH --job-name=BlastAll2RefDB
 #SBATCH -o blastp_%j_%a.out
 #SBATCH -e blastp_%j_%a.err
-#SBATCH --partition=agsmall
-#SBATCH --account=mcgaughs
+#SBATCH --partition=your_partition
+#SBATCH --account=your_account
 
+# Navigate to working directory
+cd /path/to/your/project
 
-cd /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27
-
-
-
+# Submit BLAST jobs in array batches
 sbatch --array=2001-3000 --wait BLAST1_array.sh
 sbatch --array=3001-4000 --wait BLAST1_array.sh
 sbatch --array=4001-5000 --wait BLAST1_array.sh
