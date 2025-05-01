@@ -5,32 +5,33 @@
 #SBATCH -c 1
 #SBATCH --mem=1g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
+#SBATCH --mail-user=your.email@institution.edu
 #SBATCH --job-name=appendGeneSymbol_array
 #SBATCH -o blastp_%j_%a.out
 #SBATCH -e blastp_%j_%a.err
-#SBATCH --partition=agsmall
-#SBATCH --account=mcgaughs
+#SBATCH --partition=your_partition
+#SBATCH --account=your_account
 
-cd /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/MakingAlignmentsWithGeneSymbolsFromBlast
+# Navigate to working directory
+cd /path/to/your/project/MakingAlignmentsWithGeneSymbolsFromBlast
 
-# Activate the environment with Python and necessary packages
+# Load Python module
 module load python
 
-# Assuming the Python script is named "append_gene_symbols.py"
+# Path to Python script
 PYTHON_SCRIPT_PATH="append_gene_symbols.py"
 
 # Directories for BLASTP outputs and alignment files
-BLASTP_DIR="/panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x_unaligned/BlastP_Results/"
-ALIGNMENT_DIR="/panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x/"
+BLASTP_DIR="/path/to/BlastP_Results"
+ALIGNMENT_DIR="/path/to/Alignments"
 
 # Output directory for modified alignment files
 MODIFIED_ALIGNMENTS_DIR="${ALIGNMENT_DIR}/Alignments_withGeneSymbols"
 mkdir -p "$MODIFIED_ALIGNMENTS_DIR"
 
 # Lists of BLASTP and alignment files (one file per line)
-BLASTP_LIST="/panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/BlastPOutputList_small.txt"
-ALIGNMENT_LIST="/panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/ListOfMSAs_small.txt"
+BLASTP_LIST="/path/to/BlastPOutputList.txt"
+ALIGNMENT_LIST="/path/to/ListOfMSAs.txt"
 
 # Extract the file name for the current array job
 BLASTP_FILE="$(sed "${SLURM_ARRAY_TASK_ID}q;d" ${BLASTP_LIST})"
