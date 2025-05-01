@@ -5,21 +5,21 @@
 #SBATCH -c 16
 #SBATCH --mem=16g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
-#SBATCH --job-name=FilerMajority
-#SBATCH --partition=agsmall
-#SBATCH --account=mcgaughs
+#SBATCH --mail-user=your.email@institution.edu
+#SBATCH --job-name=FilterMajority
+#SBATCH --partition=your_partition
+#SBATCH --account=your_account
 
+# Navigate to working directory
+cd /path/to/your/project/Filter_Alignments_ByGeneID
 
-
-cd /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/Filter_Alignments_ByGeneID
+# Load necessary modules
 module load python
-
-source ~/envs/myenv/bin/activate
+source ~/path/to/your/env/bin/activate
 
 # Execute the Python script
 python MajorityGeneIDs.py \
-    /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x/2Alignments_withGeneSymbols/2Alignments_GeneSymbolsANDGeneIDs/1AlignmentswithGeneSymbandGeneIDs/ \
+    /path/to/your/input_alignments/ \
     PercentageGeneIDs.txt \
-    /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x/2Alignments_withGeneSymbols/2Alignments_GeneSymbolsANDGeneIDs/1AlignmentswithGeneSymbandGeneIDs/2MajorityGeneID_alignments/ \
-    Logfile.txt \
+    /path/to/your/output_directory/ \
+    Logfile.txt
