@@ -1,9 +1,9 @@
 #!/bin/bash -l
-#SBATCH --time=500:00:00
+#SBATCH --time=96:00:00
 #SBATCH -N 1
 #SBATCH -n 1
-#SBATCH -c 32
-#SBATCH --mem=64g
+#SBATCH -c 4
+#SBATCH --mem=16g
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=drabe004@umn.edu
 #SBATCH --job-name=IQTREEArrays
@@ -11,7 +11,7 @@
 #SBATCH -e iqtree_%j_%a.err
 #SBATCH -p astyanax
 #SBATCH --account=mcgaughs
-#SBATCH --array=1-1000  # Adjust this to match number of lines in the list
+#SBATCH --array=2501-3500  # Adjust this to match number of lines in the list
 
 # Set working directory
 cd /panfs/jay/groups/26/mcgaughs/drabe004/IQTREE
