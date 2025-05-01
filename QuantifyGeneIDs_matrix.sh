@@ -5,17 +5,19 @@
 #SBATCH -c 16
 #SBATCH --mem=16g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
+#SBATCH --mail-user=your.email@institution.edu
 #SBATCH --job-name=GID_matrix
-#SBATCH --partition=agsmall
-#SBATCH --account=mcgaughs
+#SBATCH --partition=your_partition
+#SBATCH --account=your_account
 
+# Navigate to the working directory
+cd /path/to/your/project/QuantifyGeneSymbolsInMSAs
 
-
-cd /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/QuantifyGeneSymbolsInMSAs
-
+# Load Python module
 module load python
 
-source ~/envs/myenv/bin/activate
+# Activate virtual environment
+source ~/path/to/your/env/bin/activate
 
-python QuantifyGeneIDs_matrix.py /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x/Alignments_withGeneSymbols/Alignments_withGeneIDs 12kGeneIDMatrix.csv
+# Run the script to generate the GeneID matrix
+python QuantifyGeneIDs_matrix.py /path/to/input_alignment_dir 12kGeneIDMatrix.csv
