@@ -5,20 +5,19 @@
 #SBATCH -c 16
 #SBATCH --mem=16g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
+#SBATCH --mail-user=youremail 
 #SBATCH --job-name=CountDupes
-#SBATCH --partition=agsmall
-#SBATCH --account=mcgaughs
 
 
 
-cd /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/Count_Duplications_in_Alignments
+
+cd path/to/Count_Duplications_in_Alignments
 module load python
 
 source ~/envs/myenv/bin/activate
 
 module load python 
 
-ALNDIR=/panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x/2Alignments_withGeneSymbols/2Alignments_GeneSymbolsANDGeneIDs/2MajorityGeneID_alignments
+ALNDIR=path/to/2MajorityGeneID_alignments
 
 python CountDupsInAlns.py $ALNDIR Species_List.txt CountDupes.csv logfile.log
