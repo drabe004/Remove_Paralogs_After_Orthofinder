@@ -3,24 +3,24 @@
 #SBATCH -c 8
 #SBATCH --mem=16g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
+#SBATCH --mail-user=your.email@institution.edu
 #SBATCH --job-name=realign_mafft
 #SBATCH -o realign_%j_%a.out
 #SBATCH -e realign_%j_%a.err
-#SBATCH --partition=agsmall
-#SBATCH --account=mcgaughs
+#SBATCH --partition=your_partition
+#SBATCH --account=your_account
 
 # Load MAFFT module
 module load mafft
 
 # Full path to the MAFFT executable
-mafft_path="/common/software/install/migrated/mafft/7.475/bin/mafft"
+mafft_path="/path/to/mafft/bin/mafft"
 
 # Directory containing the alignment files
-ALIGNMENT_DIR="/panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x/2Alignments_withGeneSymbols/2Alignments_GeneSymbolsANDGeneIDs/2MajorityGeneID_alignments/LeftOvers"
+ALIGNMENT_DIR="/path/to/your/project/Alignments"
 
 # Path to the list of alignment files
-ALIST="/panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/1HighQualFilterMSAs_CleanANDFiltered2x/2Alignments_withGeneSymbols/2Alignments_GeneSymbolsANDGeneIDs/2MajorityGeneID_alignments/LeftOvers/list.txt"
+ALIST="${ALIGNMENT_DIR}/list.txt"
 ALIGNMENT_FILE="$(sed "${SLURM_ARRAY_TASK_ID}q;d" ${ALIST})"
 
 # Base output directory for realigned files
@@ -42,4 +42,3 @@ output_file="${BASE_OUTPUT_DIR}/${base_name}_realigned.fa"
 $mafft_path --auto "$input_file" > "$output_file"
 
 echo "Realignment complete for ${input_file}."
-done
