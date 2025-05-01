@@ -5,17 +5,18 @@
 #SBATCH -c 1
 #SBATCH --mem=1g
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=drabe004@umn.edu
+#SBATCH --mail-user=your.email@institution.edu
 #SBATCH --job-name=IQtreeMaster
-#SBATCH -p astyanax
-#SBATCH --account=mcgaughs
+#SBATCH -p your_partition
+#SBATCH --account=your_account
 
+# Load required module
 module load compatibility/agate-centos7
 
+# Navigate to working directory
+cd /path/to/your/project/IQTREE
 
-cd /panfs/jay/groups/26/mcgaughs/drabe004/Orthofinder_Datasets/125_Species_OFFICIALDATASET/OrthoFinder/Results_Jun27/IQTREE
-
-
+# Submit IQTREE job arrays in batches, waiting for each to complete
 sbatch --array=1-1000 --wait IQTREE_Arrays.sh
 sbatch --array=1001-2000 --wait IQTREE_Arrays.sh
 sbatch --array=2001-3000 --wait IQTREE_Arrays.sh
